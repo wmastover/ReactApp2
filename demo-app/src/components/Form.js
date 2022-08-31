@@ -1,12 +1,38 @@
-import React from "react";
+import React, {useState} from "react";
+
+
 
 export const Form = (props) => {
 
-    const carData = props.carData;
-    const change = props.Change;
+    const buttonText = props.buttonText;
+    const initialState = props.initialState;
     const addCar = props.addCar;
 
+        //set state for form data
+    const [carData, setCarData] = useState(
+        {
+            make:"",
+            model:"",
+            year: 1900,
+            price: 0,
+            colour: "",
+        }
+    )
 
+    const change = (e) => {
+        setCarData({
+            //create a new object by copying current carData object
+            ...carData,
+            //change field relating to input
+            [e.target.name]: e.target.type === "number" ? Number(e.target.value) : e.target.value
+        })
+        console.log(carData)
+    }
+
+    const submitCar = () => {
+        addCar({...carData})
+        setCarData(initialState)
+    }
     return(
         <form>
             <div>
@@ -30,7 +56,7 @@ export const Form = (props) => {
                 <input id="colour-input" type="text" value={carData.colour} onChange={change} name="colour"></input>
             </div>
             <div> 
-                <button type="button" onClick={addCar}>add car</button>
+                <button type="button" onClick={submitCar}>{buttonText}</button>
             </div>
         </form>
         )
