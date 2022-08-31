@@ -1,5 +1,5 @@
 import React, {useState}from "react";
-
+import { TableBody } from "./TabelBody";
 
 export const Cartool = (props) => {
     
@@ -57,18 +57,7 @@ export const Cartool = (props) => {
                         <th>colour</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {cars.map(car =>
-                        <tr key={car.id}>
-                            <td>{car.make}</td>
-                            <td>{car.model}</td>
-                            <td>{car.year}</td>
-                            <td>{car.price}</td>
-                            <td>{car.colour}</td>
-                        </tr>
-                        
-                    )}
-                </tbody>  
+                <TableBody cars={cars}/>  
             </table>
             <form>
                 <div>
