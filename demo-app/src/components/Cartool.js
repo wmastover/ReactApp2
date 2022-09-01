@@ -1,6 +1,6 @@
 import React, {useState}from "react";
 import { Form } from "./Form";
-import { CarTable } from "./TabelBody";
+import { CarTable } from "./CarTable";
 import { ToolHeader } from "./ToolHeader";
 
 export const Cartool = (props) => {
@@ -14,9 +14,8 @@ export const Cartool = (props) => {
     }
     
     //set state for table data
-    const [cars, setCars] = useState(
-        props.cars.concat()
-        )
+    const [cars, setCars] = useState(props.cars.concat())
+    const [editCarId, setEditCarID] = useState(-1)
 
 
 
@@ -37,15 +36,37 @@ export const Cartool = (props) => {
             //returns all cars where car.id != id is true
             cars.filter(car => car.id !== id)
         )
+        setEditCarID(-1)
+    }
+
+    const replaceCar = (car) => {
+        console.log("running replace car")
+        const newCars = cars.concat();
+        const indexToReplace = newCars.findIndex(c => c.id === car.id)
+        newCars[indexToReplace] = car
+        setCars(
+            newCars
+        )
+        setEditCarID(-1)
+
+    }
+
+    const editCar = (id) => {
+        setEditCarID(id)
+    }
+
+    const cancelCar = () => {
+        setEditCarID(-1)
     }
 
     return(
         <>
             <ToolHeader headerText="header string"/>
-            <CarTable cars={cars} onDeleteCar={deleteCar}/>  
-            <Form buttonText="add" addCar={addCar} initialState={initialState}/>
+            <CarTable cars={cars} editCarId={editCarId} onDeleteCar={deleteCar} onEditCar={editCar} 
+            onSaveCar={replaceCar}  onCancelCar={cancelCar} 
+            initialState={initialState}/>  
+
+            <Form buttonText="add" onAddCar={addCar} initialState={initialState}/>
         </>
     )
-    
-    
 }; 

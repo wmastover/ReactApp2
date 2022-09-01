@@ -1,37 +1,24 @@
-import React, {useState} from "react";
+import React from "react";
+import { useForm } from "../hooks/useForm";
 
 
 
-export const Form = (props) => {
+export const Form = ({buttonText, initialState, onAddCar: addCar}) => {
 
-    const buttonText = props.buttonText;
-    const initialState = props.initialState;
-    const addCar = props.addCar;
 
         //set state for form data
-    const [carData, setCarData] = useState(
+    const [carData, change, reset] = useForm(
         {
-            make:"",
-            model:"",
-            year: 1900,
-            price: 0,
-            colour: "",
+            initialState
         }
     )
 
-    const change = (e) => {
-        setCarData({
-            //create a new object by copying current carData object
-            ...carData,
-            //change field relating to input
-            [e.target.name]: e.target.type === "number" ? Number(e.target.value) : e.target.value
-        })
-        console.log(carData)
-    }
-
+        //submits car using add car function passed from cartool
     const submitCar = () => {
-        addCar({...carData})
-        setCarData(initialState)
+        console.log("submitting form")
+        addCar({...carData});
+        reset()
+        
     }
     return(
         <form>
