@@ -1,9 +1,8 @@
 import React from "react";
 
 
-export const CarTable = ({cars}) => {
+export const CarTable = ({cars, onDeleteCar: deleteCar, }) => {
     
-
     return( 
         <table>
             <thead>
@@ -12,7 +11,8 @@ export const CarTable = ({cars}) => {
                         <th>Model</th>
                         <th>Year</th>
                         <th>Price</th>
-                        <th>colour</th>
+                        <th>Colour</th>
+                        <th>Actions</th>
                     </tr>
             </thead>
             <tbody>
@@ -24,6 +24,10 @@ export const CarTable = ({cars}) => {
                             <td>{car.year}</td>
                             <td>{car.price}</td>
                             <td>{car.colour}</td>
+                            <td>
+                                <button type="button" 
+                                onClick={() => deleteCar(car.id)}>Delete</button>
+                            </td>
                         </tr>)
                 }
             </tbody>

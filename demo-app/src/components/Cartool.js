@@ -30,13 +30,19 @@ export const Cartool = (props) => {
         )
         console.log(cars)
         
+    }
 
+    const deleteCar = (id) => {
+        setCars(
+            //returns all cars where car.id != id is true
+            cars.filter(car => car.id !== id)
+        )
     }
 
     return(
         <>
             <ToolHeader headerText="header string"/>
-            <CarTable cars={cars}/>  
+            <CarTable cars={cars} onDeleteCar={deleteCar}/>  
             <Form buttonText="add" addCar={addCar} initialState={initialState}/>
         </>
     )
