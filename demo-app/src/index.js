@@ -8,7 +8,15 @@ const carList = [
     {id:2, make:"ford", model:"T", year:1900, price:20000, colour: "yellow"}
 ]   
 
+const initialState = {
+    make:"",
+    model:"",
+    year: 1900,
+    price: 0,
+    colour: "",
+}
+
 ReactDOM.render(
-    <Cartool cars={carList}/>,
+    <Cartool cars={carList} initialState={initialState}/>,
     document.querySelector("#root"),
 )

@@ -1,8 +1,8 @@
-import React from "react";
+import React, {memo}from "react";
 import { EditCarRow } from "./EditCarRow";
 import { ViewCarRow } from "./ViewCarRow";
 
-export const CarTable = ({
+export const CarTable = memo(({
     cars, 
     editCarId,
     onDeleteCar: deleteCar, 
@@ -15,7 +15,7 @@ export const CarTable = ({
     // function to output either a edit or view row depending on if id is a matche
     // to the editcarid
     const editOrViewRow = (car) => {
-        console.log(car.id, editCarId)
+        
         if ( car.id === editCarId) {
             return( <EditCarRow key={car.id} car={car} 
                 onCancelCar={cancelCar} onSaveCar={saveCar}/>)
@@ -46,4 +46,4 @@ export const CarTable = ({
         </table>
     )
 
-}
+})

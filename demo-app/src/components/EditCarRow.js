@@ -1,7 +1,10 @@
 import React from "react";
 import { useForm } from "../hooks/useForm";
+import { useDefaultInputFocus } from "../hooks/useDefaultInputFocus";
 
 export const EditCarRow = ({car, onCancelCar: cancelCar, onSaveCar,}) => {
+
+    const defaultInputRef = useDefaultInputFocus()
 
     const [carData, change,] = useForm(
         //dont forget spread operator, otherwise you end up with nested objects
@@ -22,7 +25,7 @@ export const EditCarRow = ({car, onCancelCar: cancelCar, onSaveCar,}) => {
         <tr>
             <td>
                 <input type="text" name="make" value={carData.make} 
-                onChange={change}/>
+                onChange={change} ref={defaultInputRef}/>
             </td>
             <td>
                 <input type="text" name="model" value={carData.model}
