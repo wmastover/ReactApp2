@@ -20,6 +20,7 @@ export const useForm = (initialForm) => {
     const reset = () => {
         console.log("reseting form")
         setForm({...initialForm})
+        
     }
 
     return[form, change, reset]

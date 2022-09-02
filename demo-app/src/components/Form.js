@@ -7,19 +7,16 @@ export const Form = ({buttonText, initialState, onAddCar: addCar}) => {
 
 
         //set state for form data
-    const [carData, change, reset] = useForm(
-        {
-            initialState
-        }
-    )
+    const [carData, change, reset] = useForm(initialState)
 
         //submits car using add car function passed from cartool
     const submitCar = () => {
         console.log("submitting form")
         addCar({...carData});
         reset()
-        
+        console.log(carData)
     }
+
     return(
         <form>
             <div>
@@ -46,7 +43,5 @@ export const Form = ({buttonText, initialState, onAddCar: addCar}) => {
                 <button type="button" onClick={submitCar}>{buttonText}</button>
             </div>
         </form>
-        )
-
-
+    )
 }
